@@ -9,6 +9,10 @@ async def get_time_slot(db: Session):
     return time_slots
 
 
+async def get_time_slot_by_date(db: Session, date: str):
+    time_slots = db.query(models.BookingTimeSlot).where(models.BookingTimeSlot.date == date).all()
+    return time_slots
+
 async def create_time_slot(db: Session, time_slot):
     db_item = models.BookingTimeSlot(date=time_slot.date,
                                      start_booking=time_slot.start_booking,
